@@ -1,0 +1,84 @@
+---
+title: "R Markdown and Leaflet"
+author: "Avinash Dodda"
+date: "August 01, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Background
+
+This project creates a web page using R Markdown that features a map created with Leaflet.
+
+## Goal 
+
+The goal is to mark the **top 10 most populous cities of the United States** on a map.
+
+## Data 
+
+The population data is sourced from following Wikipedia link.
+
+https://en.Wikipedia.org/wiki/List_of_United_States_cities_by_population
+
+## Load and Clean Data
+
+```{r load_data, message=FALSE, warning=FALSE,comment=""}
+#load required libraries
+library(XML)
+library(RCurl)
+library(rlist)
+library(stringr)
+library(tidyr)
+library(varhandle)
+library(leaflet)
+
+#read data from link
+url <- getURL("https://en.Wikipedia.org/wiki/List_of_United_States_cities_by_population")
+tables <- readHTMLTable(url, header=TRUE, colClasses = "character")
+tables <- list.clean(tables, fun = is.null, recursive = FALSE)
+n.rows <- unlist(lapply(tables, function(t) dim(t)[1]))
+dt <- as.data.frame(tables[[which.max(n.rows)]])
+
+#clean data and extract top 10 cities
+df <- dt[1:10,c(1:4,11)]
+colnames(df) <- c("2018 Rank","City","State","2018 Population", "Location")
+df$City <- as.character(df$City)
+df$City <- str_replace(df$City, "\\[.*\\]", "")
+df$State <- as.character(df$State)
+
+df$`2018 Population` <- unfactor(df$`2018 Population`)
+df$`2018 Population` <- as.numeric(gsub(",","",df$`2018 Population`))
+
+df<- df %>% 
+        separate(Location, c("Lat","Long"),";")
+df$Lat <- as.numeric(str_sub(df$Lat,-7,-1))
+df$Long <- as.numeric(str_sub(df$Long,1,8))
+
+# check output dataframe used for map
+df
+```
+
+## Map
+The map shows **clusters** of top 10 populous cities in United States. As we zoom in, the markers appear and clicking on markers shows the following information.
+
+- City, State
+- Rank
+- Population
+
+```{r map}
+df  %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions(),
+          lng=df$Long, 
+             lat=df$Lat, 
+             popup=paste(df$City,",",df$State,"<br>Rank: ",df$`2018 Rank`,  "<br>Population: ",
+                         formatC(df$`2018 Population`, format = "d", big.mark = ",")
+                        )
+            )
+
+```
+
