@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "R Markdown Presentation & Plotly"
 author: "Avinash Dodda"
@@ -24,3 +25,31 @@ p
 
 ## Thank You
 
+=======
+---
+title: "R Markdown Presentation & Plotly"
+author: "Avinash Dodda"
+date: "August 02, 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Mtcars Scatter plot
+<font size="3">The following plot shows the variation of MPG of cars with increasing weight and number of cylinders. The colour code represents the number of cylinders. </font>
+```{r cars, message=FALSE, warning=FALSE}
+library(plotly)
+data("mtcars")
+p<- plot_ly(mtcars, x=mtcars$wt ,y=mtcars$mpg, mode="markers",color = as.factor(mtcars$cyl)) %>%
+  layout(
+    xaxis = list(title = "Weight(1000 lbs)"),
+    yaxis = list(title = "MPG")
+    )
+p
+```
+
+## Thank You
+
+>>>>>>> 92c04b5582705ec9041d927519c5558e14ab2c71
