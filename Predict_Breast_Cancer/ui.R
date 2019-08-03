@@ -91,8 +91,8 @@ shinyUI(pageWithSidebar(
             helpText("The", strong("Accuracy"), "of the prediction model is also shown in output."),
             
             p(h4("Source Code and Data Reference")),
-            p(HTML("<a>Source Code<a>")),
-            p(HTML("<a>Data Reference<a>"))
+            p(HTML("<a href=https://github.com/avinash-dodda/Developing-Data-Products/tree/master/Predict_Breast_Cancer target=_blank> Source Code</a>")),
+            p(HTML("<a href=https://archive.ics.uci.edu/ml/datasets/breast+cancer+wisconsin+(original) target=_blank> Data Reference</a>"))
             
         ))
     )

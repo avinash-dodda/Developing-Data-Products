@@ -5,8 +5,8 @@ account: adodda
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1066271
-bundleId: 2288292
+bundleId: 2288452
 url: https://adodda.shinyapps.io/Predict_Breast_Cancer/
-when: 1564842226.99959
+when: 1564851376.77537
 asMultiple: FALSE
 asStatic: FALSE
