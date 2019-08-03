@@ -1,24 +1,59 @@
 Breast Cancer Prediction Application
 ========================================================
-author: "Avinash Dodda"
-date: "August 3, 2019"
+author: Avinash Dodda
+date: August 3rd, 2019
 autosize: true
+transition: rotate
+incremental: true
 
 Application Overview
 ========================================================
+
+- Today Breast Cancer is a major epidemic impacting millions of women across the globe  
+
+- Our application predicts whether a Breast Cancer test results indicate the tumor is cancerous or not 
+
+- The application can be launched from this [**link.**] (https://adodda.shinyapps.io/Predict_Breast_Cancer/)
 
 
 
 Application Functionality
 ========================================================
+incremental: false
+Users can input below test parameters (integer levels ranging from 1-10) through the sliders and get the resulting cancer prediction.
+        
+- <small>Clump Thickness</small>
+- <small>Uniformity of Cell Size</small>
+- <small>Uniformity of Cell Shape</small>
+- <small>Marginal Adhesion</small>
+- <small>Single Epithelial Cell Size</small>
+- <small>Bare Nuclei</small>
+- <small>Bland Chromatin</small>
+- <small>Normal Nucleoli</small>
+- <small>Mitoses</small>
 
 
-
-Data Source & Methodology
+Data Source & Sample Code
 ========================================================
 
+- Underlying data for building the model is taken from this [**UCI Machine Learning Repo**] (https://bit.ly/31fni8Z) 
+- The following embedded R code outputs the dimensions of the raw data
+
+```r
+dim(read.table("https://bit.ly/2hjHvag",
+sep = ",", na.strings=c("?"), colClasses=c("factor")))
+```
+
+```
+[1] 699  11
+```
 
 
-Source Code
+Prediction Methodology & Source Code
 ========================================================
+
+- Raw data is cleaned and split into 70% training and 30% testing sets
+- Random Forests machine learning method is used for classification training
+- Out of sample accuracy is measured on the test set and reported at ~96.1%
+- [**Source code repo**](https://github.com/avinash-dodda/Developing-Data-Products/tree/master/Predict_Breast_Cancer) containing ui.R and server.R
 
