@@ -1,0 +1,12 @@
+name: Predict_Breast_Cancer
+title: Predict_Breast_Cancer
+username:
+account: adodda
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1066271
+bundleId: 2288292
+url: https://adodda.shinyapps.io/Predict_Breast_Cancer/
+when: 1564842226.99959
+asMultiple: FALSE
+asStatic: FALSE
