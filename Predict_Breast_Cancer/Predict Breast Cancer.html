@@ -783,38 +783,73 @@ hljs.initHighlightingOnLoad();
   <div class="reveal">
   <div class="slides">
 
-<section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>Breast Cancer Prediction Application</h1><p>&quot;Avinash Dodda&quot;<br/>&quot;August 3, 2019&quot;</p>
+<section data-state="section" data-transition="default" data-transition-speed="default">
+<h1>Breast Cancer Prediction Application</h1><p>Avinash Dodda<br/>August 3rd, 2019</p>
 
 <div class="slideContent" >
 
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
+<section data-transition="default" data-transition-speed="default">
 <h3>Application Overview</h3>
 <div class="slideContent" >
+<ul>
+<li class="fragment"><p>Today Breast Cancer is a major epidemic impacting millions of women across the globe  </p></li>
+<li class="fragment"><p class="fragment">Our application predicts whether a Breast Cancer test results indicate the tumor is cancerous or not </p></li>
+<li class="fragment"><p class="fragment">The application can be launched from this <a href="https://adodda.shinyapps.io/Predict_Breast_Cancer/"><strong>link.</strong></a></p></li>
+</ul>
 
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
+<section data-transition="default" data-transition-speed="default">
 <h3>Application Functionality</h3>
 <div class="slideContent" >
+<p>Users can input below test parameters (integer levels ranging from 1-10) through the sliders and get the resulting cancer prediction.</p>
+
+<ul>
+<li><small>Clump Thickness</small></li>
+<li><small>Uniformity of Cell Size</small></li>
+<li><small>Uniformity of Cell Shape</small></li>
+<li><small>Marginal Adhesion</small></li>
+<li><small>Single Epithelial Cell Size</small></li>
+<li><small>Bare Nuclei</small></li>
+<li><small>Bland Chromatin</small></li>
+<li><small>Normal Nucleoli</small></li>
+<li><small>Mitoses</small></li>
+</ul>
 
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Data Source &amp; Methodology</h3>
+<section data-transition="default" data-transition-speed="default">
+<h3>Data Source &amp; Sample Code</h3>
 <div class="slideContent" >
+<ul>
+<li class="fragment">Underlying data for building the model is taken from this <a href="https://bit.ly/31fni8Z"><strong>UCI Machine Learning Repo</strong></a> </li>
+<li class="fragment">The following embedded R code outputs the dimensions of the raw data</li>
+</ul>
+
+<pre class="fragment"><code class="r">dim(read.table(&quot;https://bit.ly/2hjHvag&quot;,
+sep = &quot;,&quot;, na.strings=c(&quot;?&quot;), colClasses=c(&quot;factor&quot;)))
+</code></pre>
+
+<pre class="fragment"><code>[1] 699  11
+</code></pre>
 
 </div>
 
 </section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Source Code</h3>
+<section data-transition="default" data-transition-speed="default">
+<h3>Prediction Methodology &amp; Source Code</h3>
 <div class="slideContent" >
+<ul>
+<li class="fragment">Raw data is cleaned and split into 70% training and 30% testing sets</li>
+<li class="fragment">Random Forests machine learning method is used for classification training</li>
+<li class="fragment">Out of sample accuracy is measured on the test set and reported at ~96.1%</li>
+<li class="fragment"><a href="https://github.com/avinash-dodda/Developing-Data-Products/tree/master/Predict_Breast_Cancer"><strong>Source code repo</strong></a> containing ui.R and server.R</li>
+</ul>
 
 </div>
 
@@ -870,7 +905,7 @@ function commandsForSlide(indexh) {
       rollingLinks: false,
       
       theme: 'simple', 
-      transition: 'linear',
+      transition: 'default',
       transitionSpeed: 'default',
       rtl: false,
       width: 960,
